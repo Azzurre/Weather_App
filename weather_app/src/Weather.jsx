@@ -14,19 +14,20 @@ const Weather = () => {
 
 
     useEffect(() => {
-        const fetchWeatherByCity = async () => {
+        const fetchWeatherByCity = async (cityName) => {
             try {
                 const apiKey = "c4c2a91410c7352c9ffda3604c38aac4"; // API
                 const response = await axios.get(
                     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
                 );
                 setWeatherData(response.data);
-                setError(null); //Reset error on succes
                 setLoading(false);
+                setError(null); //Reset error on succes
             } catch (error) {
                 setError("City not found. Please try again.");
-                setLoading(false);
                 setWeatherData(null);
+                setLoading(false);
+                
             }
         };
         // Function to fetch the weather by the coordinates using longitude and latitude
@@ -82,15 +83,11 @@ const Weather = () => {
 
     const handleCityChange = (e) => {
         setCity(e.target.value);
-        setError(null); // Clear error as user is typing
+        if (error) setError(null); // Clear error as user is typing
     };
 
     if (loading) {
         return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
     }
 
     return (
