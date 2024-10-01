@@ -105,7 +105,7 @@ const Weather = () => {
             />
 
             {/* Display an error if the city is not found */}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className="error">{error}</p>}
 
             {/* If no weather data, prompt user to enter a city */}
             {!weatherData && !error && <div>Enter a city to see the weather</div>}
@@ -113,11 +113,15 @@ const Weather = () => {
 
             {/* Display weather data if available */}
             {weatherData && (
-                <>
+                <div className="weather-info">
                     <h2>Weather in {weatherData.name}</h2>
+                    <img
+                        src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                        alt={weatherData.weather[0].description}
+                    />
                     <p>Temperature: {weatherData.main.temp}°C</p>
                     <p>Condition: {weatherData.weather[0].description}</p>
-                </>
+                </div>
             )}
         </div>
     );

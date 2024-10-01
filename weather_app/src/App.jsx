@@ -4,7 +4,7 @@ import Weather from './Weather'; // Import the Weather component
 function App() {
     return (
         <div className="App">
-            <h1>Weather Application</h1>
+            <h1></h1>
             <Weather />  {/* Use the Weather component */}
         </div>
     );
