@@ -11,6 +11,207 @@ body {
     align-items: center;
 }
 
+/* Cloud container that spans outside the weather container */
+.cloud-container {
+    position: absolute;
+    top: 0; /* You can adjust this to control how high the clouds appear */
+    left: -150px; /* Start the clouds off-screen */
+    width: 150vw; /* Clouds will float beyond the width of the viewport */
+    height: 100px;
+    pointer-events: none; /* So the user can interact with the input fields beneath */
+    overflow: hidden;
+    z-index: 0; /* Place clouds behind other elements */
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: moveCloud linear infinite;
+}
+
+    /* Base cloud shape */
+    .cloud:before, .cloud:after {
+        content: '';
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+    }
+
+    .cloud:before {
+        width: 60px;
+        height: 60px;
+        top: -20px;
+        left: -30px;
+    }
+
+    .cloud:after {
+        width: 40px;
+        height: 40px;
+        top: -20px;
+        left: 30px;
+    }
+
+    /* Random sizes, speeds, and positions for the clouds */
+    .cloud:nth-child(1) {
+        width: 120px;
+        height: 70px;
+        top: 20px;
+        animation-duration: 35s;
+    }
+
+    .cloud:nth-child(2) {
+        width: 80px;
+        height: 50px;
+        top: 50px;
+        animation-duration: 45s;
+    }
+
+    .cloud:nth-child(3) {
+        width: 150px;
+        height: 80px;
+        top: 30px;
+        animation-duration: 40s;
+    }
+
+    .cloud:nth-child(4) {
+        width: 100px;
+        height: 60px;
+        top: 10px;
+        animation-duration: 55s;
+    }
+
+    .cloud:nth-child(5) {
+        width: 130px;
+        height: 70px;
+        top: 70px;
+        animation-duration: 50s;
+    }
+
+/* Random cloud movement across the screen */
+@keyframes moveCloud {
+    to {
+        transform: translateX(150vw); /* Clouds move from left to right across the entire viewport */
+    }
+}
+
+
+/* Rain container to hold the rain animation */
+.rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* So the user can interact with the input fields beneath */
+    overflow: hidden; /* Ensure the raindrops that go off-screen don’t create scrollbars */
+    z-index: 1; /* Keep it above the background but below other elements */
+}
+
+/* Each raindrop */
+.rain {
+    position: absolute;
+    top: -10%; /* Start above the screen */
+    width: 2px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5); /* Light raindrop color */
+    animation: fall linear infinite;
+}
+
+/* Keyframes for the falling raindrops */
+@keyframes fall {
+    0% {
+        top: -10%; /* Start off-screen */
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%; /* End at the bottom of the screen */
+        opacity: 0.5; /* Fade slightly as it falls */
+    }
+}
+
+.rain:nth-child(1) {
+    left: 10%;
+    width: 2px;
+    height: 15px;
+    animation-duration: 1s;
+    animation-delay: 0s;
+}
+
+.rain:nth-child(2) {
+    left: 20%;
+    width: 1px;
+    height: 10px;
+    animation-duration: 1.5s;
+    animation-delay: 0.2s;
+}
+
+.rain:nth-child(3) {
+    left: 30%;
+    width: 2px;
+    height: 20px;
+    animation-duration: 0.8s;
+    animation-delay: 0.1s;
+}
+
+.rain:nth-child(4) {
+    left: 40%;
+    width: 3px;
+    height: 18px;
+    animation-duration: 1.2s;
+    animation-delay: 0.3s;
+}
+
+.rain:nth-child(5) {
+    left: 50%;
+    width: 2px;
+    height: 15px;
+    animation-duration: 1.3s;
+    animation-delay: 0.2s;
+}
+
+.rain:nth-child(6) {
+    left: 60%;
+    width: 1px;
+    height: 12px;
+    animation-duration: 1.7s;
+    animation-delay: 0.4s;
+}
+
+.rain:nth-child(7) {
+    left: 70%;
+    width: 2px;
+    height: 17px;
+    animation-duration: 0.9s;
+    animation-delay: 0.5s;
+}
+
+.rain:nth-child(8) {
+    left: 80%;
+    width: 3px;
+    height: 20px;
+    animation-duration: 1.1s;
+    animation-delay: 0.3s;
+}
+
+.rain:nth-child(9) {
+    left: 90%;
+    width: 2px;
+    height: 13px;
+    animation-duration: 1.4s;
+    animation-delay: 0.6s;
+}
+
+.rain:nth-child(10) {
+    left: 95%;
+    width: 1px;
+    height: 10px;
+    animation-duration: 1.6s;
+    animation-delay: 0.5s;
+}
+
 /* Center the weather container */
 .weather-container {
     background-color: rgba(255, 255, 255, 0.85);
@@ -24,6 +225,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 0%;
+    animation: fadeIn 1.5s forwards; /*fade in when loaded*/
 }
 
 h1 {
@@ -77,8 +280,45 @@ p {
   color: red;
 }
 
+.weather-info img {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+    filter: drop-shadow(0 0 5px black); /* Light white glow */
+    
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    /*animation: pulse 2s infinite /* Pulse animation */
+
+}
+
+.weather-info img:hover{
+    transform: scale(1.2);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .weather-info {
   margin-top: 20px;
+
+}
+
+@keyframes fadeIn { 
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .weather-info h2 {

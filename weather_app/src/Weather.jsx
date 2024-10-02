@@ -2,6 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Weather.css';
 
+<div className="rain-container">
+    <div className="rain"></div>
+    <div className="rain"></div>
+    <div className="rain"></div>
+    <div className="rain"></div>
+    <div className="rain"></div>
+    <div className="rain"></div>
+
+
+</div>
 
 const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -109,6 +119,66 @@ const Weather = () => {
 
             {/* If no weather data, prompt user to enter a city */}
             {!weatherData && !error && <div>Enter a city to see the weather</div>}
+
+            {weatherData && weatherData.weather[0].main.includes('Cloud') && (
+                <div className="cloud-container">
+                    <div className="cloud"></div>
+                    <div className="cloud"></div>
+                    <div className="cloud"></div>
+                    <div className="cloud"></div>
+                </div>
+            )}
+
+
+            {/* Show raindrop animation when weather is "Rain" */}
+            {weatherData && weatherData.weather[0].description.includes("light rain") && (
+                <div className="rain-container light-rain">
+                    {/* Light rain animation */}
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                </div>
+            )}
+
+            {weatherData && weatherData.weather[0].description.includes("moderate intensity rain") && (
+                <div className="rain-container moderate-rain">
+                    {/* Moderate rain animation */}
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                </div>
+            )}
+
+            {weatherData && weatherData.weather[0].description.includes("heavy intensity rain") && (
+                <div className="rain-container heavy-rain">
+                    {/* Heavy rain animation */}
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                    <div className="rain"></div>
+                </div>
+            )}
+
 
 
             {/* Display weather data if available */}
