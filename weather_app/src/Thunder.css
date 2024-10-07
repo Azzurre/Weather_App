@@ -1,0 +1,16 @@
+.thunder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.7); /* Bright flash color */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none; /* Prevent interaction */
+    z-index: 999; /* Ensure it's on top */
+}
+
+    .thunder.active {
+        opacity: 1; /* Show thunder flash */
+    }
