@@ -11,90 +11,6 @@ body {
     align-items: center;
 }
 
-/* Cloud container that spans outside the weather container */
-.cloud-container {
-    position: absolute;
-    top: 0; /* You can adjust this to control how high the clouds appear */
-    left: -150px; /* Start the clouds off-screen */
-    width: 150vw; /* Clouds will float beyond the width of the viewport */
-    height: 100px;
-    pointer-events: none; /* So the user can interact with the input fields beneath */
-    overflow: hidden;
-    z-index: 0; /* Place clouds behind other elements */
-}
-
-.cloud {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: moveCloud linear infinite;
-}
-
-    /* Base cloud shape */
-    .cloud:before, .cloud:after {
-        content: '';
-        position: absolute;
-        background: white;
-        border-radius: 50%;
-    }
-
-    .cloud:before {
-        width: 60px;
-        height: 60px;
-        top: -20px;
-        left: -30px;
-    }
-
-    .cloud:after {
-        width: 40px;
-        height: 40px;
-        top: -20px;
-        left: 30px;
-    }
-
-    /* Random sizes, speeds, and positions for the clouds */
-    .cloud:nth-child(1) {
-        width: 120px;
-        height: 70px;
-        top: 20px;
-        animation-duration: 35s;
-    }
-
-    .cloud:nth-child(2) {
-        width: 80px;
-        height: 50px;
-        top: 50px;
-        animation-duration: 45s;
-    }
-
-    .cloud:nth-child(3) {
-        width: 150px;
-        height: 80px;
-        top: 30px;
-        animation-duration: 40s;
-    }
-
-    .cloud:nth-child(4) {
-        width: 100px;
-        height: 60px;
-        top: 10px;
-        animation-duration: 55s;
-    }
-
-    .cloud:nth-child(5) {
-        width: 130px;
-        height: 70px;
-        top: 70px;
-        animation-duration: 50s;
-    }
-
-/* Random cloud movement across the screen */
-@keyframes moveCloud {
-    to {
-        transform: translateX(150vw); /* Clouds move from left to right across the entire viewport */
-    }
-}
 
 
 /* Rain container to hold the rain animation */
@@ -219,6 +135,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 400px;
+    z-index: 1; /*Weather container is in front of the clouds*/
     width: 100%;
     text-align: center;
     display: flex;
@@ -240,6 +157,7 @@ input[type="text"] {
     width: auto;
     max-width: auto;
     padding: 10px;
+    z-index: 2;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;

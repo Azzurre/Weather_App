@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Weather.css';
+import Clouds from "./Cloud";
+import Mist from "./Mist";
 
 <div className="rain-container">
     <div className="rain"></div>
@@ -12,6 +14,8 @@ import './Weather.css';
 
 
 </div>
+
+
 
 const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -101,6 +105,11 @@ const Weather = () => {
     }
 
     return (
+        <div className="app-container">
+            {/* Render Clouds if the weather is cloudy */}
+            {weatherData && weatherData.weather[0].main.includes('Cloud') && <Clouds />}
+            {weatherData && weatherData.weather[0].main.includes('Mist') && <Mist />}
+
         <div className="weather-container">
             <h1>Weather App</h1>
 
@@ -140,7 +149,7 @@ const Weather = () => {
                 </div>
             )}
 
-            {weatherData && weatherData.weather[0].description.includes("moderate intensity rain") && (
+            {weatherData && weatherData.weather[0].description.includes("moderate rain") && (
                 <div className="rain-container moderate-rain">
                     {/* Moderate rain animation */}
                     <div className="rain"></div>
@@ -193,6 +202,7 @@ const Weather = () => {
                     <p>Condition: {weatherData.weather[0].description}</p>
                 </div>
             )}
+            </div>
         </div>
     );
 };

@@ -1,0 +1,30 @@
+.mist-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Prevent interaction with mist */
+    z-index: 0; /* Place behind other content */
+}
+
+.mist {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8); /* Light mist color */
+    border-radius: 50%;
+    filter: blur(15px); /* Blurs the mist */
+    animation-name: mistAnimation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* Animation to make the mist move slightly */
+@keyframes mistAnimation {
+    0% {
+        transform: translateY(0); /* Start position */
+    }
+
+    100% {
+        transform: translateY(20px); /* Move down 20px */
+    }
+}

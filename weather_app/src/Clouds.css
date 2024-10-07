@@ -1,0 +1,54 @@
+/* Cloud container that spans outside the weather container */
+.cloud-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150vw;
+    height: 100vh;
+    z-index: 0; /* Place clouds behind other elements */
+    overflow: hidden;
+}
+
+/* Cloud shape styling */
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%; /* Rounded shape */
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    animation: moveCloud linear infinite;
+    transform: scale(1.2); /* Slight scaling to make clouds look larger */
+    z-index: -1;
+}
+
+    /* Additional cloud parts to make the shape more complex */
+    .cloud:before, .cloud:after {
+        content: '';
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+    }
+
+    .cloud:before {
+        width: 70%;
+        height: 70%;
+        top: -30%;
+        left: -40%;
+    }
+
+    .cloud:after {
+        width: 50%;
+        height: 50%;
+        top: 10%;
+        left: 50%;
+    }
+
+/* Animation for cloud movement */
+@keyframes moveCloud {
+    0% {
+        transform: translateX(0vw); /* Start from off-screen (left) */
+    }
+
+    100% {
+        transform: translateX(150vw); /* Move beyond the right side of the screen */
+    }
+}
