@@ -4,6 +4,7 @@ import './Weather.css';
 import Clouds from "./Cloud";
 import Mist from "./Mist";
 import Thunder from "./Thunder";
+import WeatherTip from "./WeatherTip";
 
 const Weather = () => {
     // State variables
@@ -14,6 +15,7 @@ const Weather = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [typingTimeout, setTypingTimeout] = useState(0); // For debouncing
+    const [isTipVisible, setIsTipVisible] = useState(true); // Control modal visibility
 
     // Event handler for city input change
     const handleCityChange = (e) => {
@@ -242,6 +244,14 @@ const Weather = () => {
                         <p>Temperature: {weatherData.main.temp}°C</p>
                         <p>Condition: {weatherData.weather[0].description}</p>
                     </div>
+                )}
+                {/* Display the WeatherTip component */}
+                {weatherData && isTipVisible &&(
+                    <WeatherTip
+                        weatherData={weatherData}
+                        airQualityData={airQualityData}
+                        onClose={() => setIsTipVisible(false)}
+                    />
                 )}
                 {airQualityData && (
                     <div className="air-quality-info">
